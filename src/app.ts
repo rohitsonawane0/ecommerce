@@ -8,11 +8,9 @@ import compression from "compression";
 import multer from "multer";
 import cors from "cors";
 
-import createHttpError from "http-errors";
-
 import { globalErrorHandler } from "./middleware/globalErrorHandler.middleware";
 import { NotFoundError } from "./utils/error";
-// import { AppError } from "./utils/error.utils.js";
+import router from "./routes";
 
 dotenv.config();
 //create express app
@@ -40,14 +38,10 @@ app.use(multer().any());
 //cors
 app.use(cors());
 
-app.get("/", (req, res) => {
-  throw new NotFoundError("page you are looking not found");
+app.use("/api/v1", router);
+app.use(async (req, res, next) => {
+  next(new NotFoundError("This route not found"));
 });
-//
-// app.use("/api/v1", router);
-// app.use(async (req, res, next) => {
-//   next(new AppError("This route not found", 404));
-// });
 
 app.use(globalErrorHandler);
 
