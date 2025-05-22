@@ -6,8 +6,8 @@ const categoryBaseSchema = z.object({
   name: z.string().min(1, "Name is required"),
   slug: z.string().min(1, "Slug is required"),
   parentId: z.number().int().nullable().optional(),
-  description: z.string().max(1000).optional(),
-  imageUrl: z.string().url().optional(),
+  description: z.string().max(1000).nullable().optional(),
+  imageUrl: z.string().url().nullable().optional(),
   isActive: z.boolean().default(true),
 });
 
