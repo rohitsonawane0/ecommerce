@@ -6,7 +6,9 @@ import {
 } from "../validations/brand.validations";
 
 const BrandService = {
-  async createBrand(brandCreateSchema: BrandCreateInput) {},
+  async createBrand(brandCreateSchema: BrandCreateInput) {
+    return prisma.brand.create({ data: brandCreateSchema });
+  },
 
   async findBrandBySlug(slug: string): Promise<BrandResponse | null> {
     return prisma.brand.findFirst({ where: { slug, isDeleted: false } });
