@@ -6,7 +6,7 @@ const createBrand = catchAsync(async (req: Request, res: Response) => {
   const created = await BrandService.createBrand(req.body);
   res.status(201).json({
     status: true,
-    message: "New category created",
+    message: "New brand created",
     data: created,
   });
 });

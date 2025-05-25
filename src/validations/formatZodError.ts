@@ -10,6 +10,7 @@ const formatZodIssue = (issue: ZodIssue): string => {
 /** Grab the first issue and format it */
 export const formatZodError = (error: ZodError): string => {
   if (error.issues.length > 0) {
+    console.log({ error: error.issues });
     return formatZodIssue(error.issues[0]);
   }
   return "Invalid input";
